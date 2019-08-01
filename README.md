@@ -7,3 +7,5 @@ Required libraries to run our Tree++ are numpy, networkx, scipy, re, sympy, and 
 $ python tree++.py "KKI"
 
 where the input parameter "KKI" is the name of the dataset.
+
+The original datasets can be found at: https://ls11-www.cs.tu-dortmund.de/staff/morris/graphkerneldatasets
