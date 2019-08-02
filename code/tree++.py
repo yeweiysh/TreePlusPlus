@@ -1,8 +1,7 @@
 import numpy as np
-import multiprocessing as mp
 import networkx as nx
 from collections import defaultdict
-import sys, copy, time, pickle
+import sys, copy, time
 import scipy.io as sci
 import re
 import sympy
@@ -12,8 +11,6 @@ import gensim
 from scipy.sparse import csr_matrix
 import hdf5storage
 import breadth_first_search as bfs
-from sklearn.manifold import TSNE
-import matplotlib.pyplot as plt
 #from sklearn.preprocessing import normalize
 # import collections as cl
 
