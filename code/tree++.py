@@ -15,6 +15,20 @@ import breadth_first_search as bfs
 # import collections as cl
 
 
+def compute_centrality(adj):
+    n = len(adj)
+    adj = adj + np.eye(n)
+    cen = np.zeros(n)
+    G = nx.from_numpy_matrix(adj)
+    # nodes = betweenness_centrality(G, normalized=True)
+    nodes = nx.eigenvector_centrality(G, max_iter=1000, tol=1.0e-4)
+    #nodes = nx.eigenvector_centrality_numpy(G)
+    for i in range(len(nodes)):
+        cen[i] = nodes[i]
+
+    return cen
+
+
 def build_multiset(graph_data, maxh, hasnl, hasatt, depth):
     prob_map = {}
     graphs = {}
@@ -51,9 +65,11 @@ def build_multiset(graph_data, maxh, hasnl, hasatt, depth):
             nx_G = nx.from_numpy_matrix(adj)
             label = labels[gidx]
             #print(label)
+            
+            eigen_cen = compute_centrality(adj)
 
             for node in range(len(adj)):
-                edges = list(bfs.bfs_edges(nx_G, label, source=node, depth_limit=deep))
+                edges = list(bfs.bfs_edges(nx_G, label, eigen_cen, source=node, depth_limit=deep))
                 #print(edges)
                 bfstree = str(label[node])
                 cnt = 0
@@ -88,6 +104,7 @@ def build_multiset(graph_data, maxh, hasnl, hasatt, depth):
     for gidx in range(num_graphs):
         adj = graphs[gidx]
         nx_G = nx.from_numpy_matrix(adj)
+        eigen_cen = compute_centrality(adj)
         paths_graph = []
         judge_set = set()
         label = labels[gidx]
@@ -95,7 +112,7 @@ def build_multiset(graph_data, maxh, hasnl, hasatt, depth):
             
             paths_graph.append(str(node))
             judge_set.add(str(node))
-            edges = list(bfs.bfs_edges(nx_G, label, source=node, depth_limit=depth))
+            edges = list(bfs.bfs_edges(nx_G, label, eigen_cen, source=node, depth_limit=depth))
             node_in_path = []
             for u, v in edges:
                 node_in_path.append(v)
@@ -179,8 +196,8 @@ if __name__ == "__main__":
     OUTPUT_DIR = "./kernels/"
     # location of the datasets
     DATA_DIR = "../datasets/"
-    maxh = 5
-    depth = 8
+    maxh = 3
+    depth = 7 #corresponding to d=6 in the paper
     ds_name = sys.argv[1]
     filename = DATA_DIR + ds_name + '.mat'
     data = sci.loadmat(filename)
