@@ -29,7 +29,7 @@ def compute_centrality(adj):
     return cen
 
 
-def build_multiset(graph_data, maxh, hasnl, hasatt, depth):
+def build_multiset(graph_data, maxh, depth):
     prob_map = {}
     graphs = {}
     labels = {}
@@ -37,20 +37,12 @@ def build_multiset(graph_data, maxh, hasnl, hasatt, depth):
     num_graphs = len(graph_data[0])
 
     for gidx in range(num_graphs):
-        #if hasatt == 0:
         adj = graph_data[0][gidx]['am']
-        #else:
-        #    adj = graph_data[0][gidx]['aff']
         graphs[gidx] = adj
 
     for gidx in range(num_graphs):
-        #degree = np.sum(graph_data[0][gidx]['am'], axis=1)
-        if hasnl == 0:
-            degree = np.sum(adj, axis=1)
-            labels[gidx] = degree
-        else:
-            label = graph_data[0][gidx]['nl'].T
-            labels[gidx] = label[0]
+        label = graph_data[0][gidx]['nl'].T
+        labels[gidx] = label[0]
     
     alllabels[0] = labels
 
