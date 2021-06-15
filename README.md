@@ -11,3 +11,5 @@ $ python tree++.py "KKI"
 where the input parameter "KKI" is the name of the dataset.
 
 The original datasets can be found at: https://ls11-www.cs.tu-dortmund.de/staff/morris/graphkerneldatasets
+
+If you have any questions, please contact me via weiye@cs.ucsb.edu.
