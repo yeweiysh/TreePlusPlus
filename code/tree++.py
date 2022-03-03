@@ -185,7 +185,7 @@ def build_multiset(graph_data, maxh, depth):
 
 if __name__ == "__main__":
     # location to save the results
-    OUTPUT_DIR = "./kernels"
+    OUTPUT_DIR = "./kernel"
     # location of the datasets
     DATA_DIR = "../datasets/"
     maxh = 3
