@@ -218,7 +218,7 @@ if __name__ == "__main__":
 
     # the following computed kernel can be directly fed to libsvm library
     print("Saving the kernel to the following location: %s/%s_kernel.mat" % (OUTPUT_DIR, ds_name))
-    sci.savemat("%s/%s_maxh_%d_maxdepth_%d_kernel.mat" % (OUTPUT_DIR, ds_name, maxh, depth), mdict={'kernel': K})
+    sci.savemat("%s/%s_maxh_%d_depth_%d_kernel.mat" % (OUTPUT_DIR, ds_name, maxh, depth), mdict={'kernel': K})
 
 
 
