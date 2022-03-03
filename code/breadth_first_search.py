@@ -15,6 +15,7 @@ def generic_bfs_edges(G, label, eigen_cen, source, neighbors=None, depth_limit=N
     neigh = list(neighbors(source))
 
     neighlabel = []
+    neighbor_list = []
     for nei in neigh:
         neighbor_dict = {}
         neighbor_dict['vertex'] = int(nei)
